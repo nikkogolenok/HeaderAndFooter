@@ -9,9 +9,34 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    // MARK: - GUI Variable
+    private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+    
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        creatDelegate()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        createFrame()
+    }
+    
+    // MARK: - Methods
+    func creatDelegate() {
+        view.addSubview(collectionView)
+        collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
+        collectionView.register(HeaderCollectionReusableView.self, forCellWithReuseIdentifier: HeaderCollectionReusableView.identifier)
+        collectionView.register(FooterCollectionReusableView.self, forCellWithReuseIdentifier: FooterCollectionReusableView.identifier)
+        
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    func createFrame() {
+        collectionView.frame = view.bounds
     }
 }
-
