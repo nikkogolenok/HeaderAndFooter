@@ -29,8 +29,12 @@ class ViewController: UIViewController {
     func creatDelegate() {
         view.addSubview(collectionView)
         collectionView.register(MyCollectionViewCell.self, forCellWithReuseIdentifier: MyCollectionViewCell.identifier)
-        collectionView.register(HeaderCollectionReusableView.self, forCellWithReuseIdentifier: HeaderCollectionReusableView.identifier)
-        collectionView.register(FooterCollectionReusableView.self, forCellWithReuseIdentifier: FooterCollectionReusableView.identifier)
+        collectionView.register(HeaderCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+                                withReuseIdentifier: HeaderCollectionReusableView.identifier)
+        collectionView.register(FooterCollectionReusableView.self,
+                                forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
+                                withReuseIdentifier: FooterCollectionReusableView.identifier)
         
         collectionView.delegate = self
         collectionView.dataSource = self
